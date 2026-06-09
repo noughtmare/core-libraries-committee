@@ -2,7 +2,7 @@
 name: Other questions
 about: Governance of core libraries other than `base`; CLC policies and administration.
 title: ''
-labels: ''
+labels: 'non-proposal'
 assignees: ''
 ---
 

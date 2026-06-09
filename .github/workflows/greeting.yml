@@ -1,0 +1,22 @@
+name: greeting
+run-name: ${{ github.actor }} is learning GitHub Actions
+on:
+  issues:
+    types: [opened]
+jobs:
+  greeting:
+    # TODO: if: github.event.label.name != 
+    runs-on: ubuntu-latest
+    steps:
+      - name: Add comment
+        run: gh issue comment "$NUMBER" --body "$BODY"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          NUMBER: ${{ github.event.issue.number }}
+          BODY: >
+            Thank you for your contribution!
+
+            When you are happy with your proposal and want to formally submit it for review by the committee, you can ping the committee chair: @TeofilC
+
+            Feel free to ask us for help at any time. We are happy to help!
