@@ -11,7 +11,7 @@ jobs:
       issues: write
     steps:
       - name: Add comment
-        run: if [[ "$(gh issue list -A ${{ github.actor }} | wc -l)" -gt "1" ]]; then gh issue comment "$NUMBER" --body "$BODY"; fi
+        run: if [[ "$(gh issue list -A ${{ github.actor }} | wc -l)" -le "1" ]]; then gh issue comment "$NUMBER" --body "$BODY"; fi
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_REPO: ${{ github.repository }}
