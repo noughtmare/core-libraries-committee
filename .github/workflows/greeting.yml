@@ -5,13 +5,13 @@ on:
     types: [opened]
 jobs:
   greeting:
-    # TODO: if: github.event.label.name != 
+    if: github.event.label.name != 'non-proposal'
     runs-on: ubuntu-latest
     permissions:
       issues: write
     steps:
       - name: Add comment
-        run: gh issue comment "$NUMBER" --body "$BODY"
+        run: if [[ "$(gh issue list -A ${{ github.actor }} | wc -l)" -gt "1" ]]; then gh issue comment "$NUMBER" --body "$BODY"; fi
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_REPO: ${{ github.repository }}
@@ -19,6 +19,8 @@ jobs:
           BODY: >
             Thank you for your contribution!
 
+
             When you are happy with your proposal and want to formally submit it for review by the committee, you can ping the committee chair: @TeofilC
+
 
             Feel free to ask us for help at any time. We are happy to help!
