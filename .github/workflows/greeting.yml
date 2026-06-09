@@ -1,5 +1,5 @@
 name: greeting
-run-name: ${{ github.actor }} is learning GitHub Actions
+run-name: Greeting newcomers
 on:
   issues:
     types: [opened]
